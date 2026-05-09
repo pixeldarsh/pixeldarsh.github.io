@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Class XI student · Gurgaon, India · <a href="mailto:REMOVED">REMOVED</a>
+subtitle: Class XI student · Gurgaon, India
 
 profile:
   align: right
@@ -11,7 +11,7 @@ profile:
   more_info:
 
 selected_papers: false
-social: true
+social: false
 
 announcements:
   enabled: false
