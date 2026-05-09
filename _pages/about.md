@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: Class XI student · Gurgaon, India · <a href="mailto:REMOVED">REMOVED</a>
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: projects
+title: Projects
 permalink: /projects/
 description: Things I've built — hardware, software, and everything in between.
 nav: true
