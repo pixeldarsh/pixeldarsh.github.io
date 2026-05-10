@@ -26,7 +26,9 @@ category:
 ## Overview
 
 This project is a self-stabilising platform built using a **Raspberry Pi**, an **MPU-6050 IMU** (Inertial Measurement Unit), and two servo motors. The platform keeps a surface level regardless of how the base is tilted — using a classic **PID (Proportional-Integral-Derivative) control loop** running in real-time.
-
+ The aim of the project was to demonstrate how feedback control systems used in robotics and aerospace can be applied to create a compact stabilizing mechanism.
+The platform used an MPU6050 sensor, which combines a gyroscope and accelerometer to continuously measure tilt angle and motion. This data was processed by a Raspberry Pi, which acted as the main controller. The Raspberry Pi ran a PID algorithm that compared the current tilt angle with the desired balanced position and calculated the correction needed in real time.
+To physically stabilize the platform, MG90S metal gear servo motors were used as actuators. Based on the PID output, the servos adjusted the platform’s position to counteract disturbances and restore balance. This control loop repeated continuously at high speed, allowing the platform to react dynamically when pushed or tilted.
 ## What I Built
 
 - Read roll and pitch angles from the MPU-6050 over I²C
@@ -40,6 +42,8 @@ Building this project made abstract physics and engineering concepts tangible. F
 
 ## Tech Stack
 
-- **Hardware:** Raspberry Pi, MPU-6050 IMU, SG90 servo motors
+- **Hardware:** Raspberry Pi, MPU-6050 IMU, MG90S servo motors
 - **Software:** Python, smbus2 (I²C), RPi.GPIO
 - **Concepts:** PID control, sensor fusion, real-time systems
+
+Youtube link - https://youtu.be/M7jIpGaIvR4?si=iSHR12LEKWZX86-e
