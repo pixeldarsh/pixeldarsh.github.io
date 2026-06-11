@@ -5,7 +5,7 @@ description: A pneumatic inchworm-inspired robot that autonomously climbs tree t
 img: assets/img/projects/tree-climbing-robot-thumb.jpg
 importance: 2
 category:
-youtube_id: tyosU3zdrbU
+youtube_id: kiXCCa_L0Ws
 ---
 
 <div class="row justify-content-center mb-4">
