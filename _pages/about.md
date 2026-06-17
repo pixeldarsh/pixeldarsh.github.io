@@ -28,6 +28,8 @@ I scored **98.6%** in my CBSE Class X Board Examinations and continue to push we
 
 My first real step in that direction was building a [Self-Stabilising Platform](/projects/self-stabilising-platform/) using a Raspberry Pi — integrating sensors, software, and physics into a working real-time control system. That project turned abstract ideas like feedback loops and control theory into something I could hold in my hands.
 
+I also built a [Tree Climbing Robot](/projects/tree-climbing-robot/) using pneumatic cylinders and an ESP32 — iterating through multiple mechanical designs before arriving at a form-closure inchworm mechanism that could autonomously climb a tree trunk.
+
 I attended **YTS**, a summer robotics program at Plaksha University, where I worked on hands-on robotics projects alongside peers from across the country.
 
 **Programming:** Python
