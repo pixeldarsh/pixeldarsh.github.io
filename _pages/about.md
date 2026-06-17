@@ -28,6 +28,10 @@ I scored **98.6%** in my CBSE Class X Board Examinations and continue to push we
 
 My first real step in that direction was building a [Self-Stabilising Platform](/projects/self-stabilising-platform/) using a Raspberry Pi — integrating sensors, software, and physics into a working real-time control system. That project turned abstract ideas like feedback loops and control theory into something I could hold in my hands.
 
+I attended **YTS**, a summer robotics program at Plaksha University, where I worked on hands-on robotics projects alongside peers from across the country.
+
+**Programming:** Python
+
 Outside engineering, I play **soccer and cricket** for my school team in inter-school competitions, and I've had the privilege of being well-travelled — giving me a broad, international perspective. I also provided editorial support for a published book on *Women CFO Stories*.
 
 **Languages:** English (Fluent) · Hindi (Fluent) · Spanish (Beginner)
