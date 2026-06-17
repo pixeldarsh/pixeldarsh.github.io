@@ -5,23 +5,28 @@ description: A real-time stabilisation system built with Raspberry Pi, MPU-6050 
 img: assets/img/projects/stabilising-platform-thumb.jpg
 importance: 1
 category:
+youtube_id: M7jIpGaIvR4
 ---
-
-<div class="row justify-content-center mb-4">
-  <div class="col-md-10">
-    {% if page.youtube_id %}
-    <div class="ratio ratio-16x9 mb-3">
-      <iframe src="https://www.youtube.com/embed/{{ page.youtube_id }}" title="Project demo" allowfullscreen></iframe>
-    </div>
-    {% endif %}
-  </div>
-</div>
 
 <div class="row justify-content-center mb-4">
   <div class="col-md-10">
     {% include figure.liquid loading="eager" path="assets/img/projects/stabilising-platform-thumb.jpg" title="Self-Stabilising Platform" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
+
+{% if page.youtube_id %}
+<div class="row justify-content-center mb-4">
+  <div class="col-md-10">
+    <div class="ratio ratio-16x9">
+      <iframe
+        src="https://www.youtube.com/embed/{{ page.youtube_id }}"
+        title="Self-Stabilising Platform Demo"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+{% endif %}
 
 ## Overview
 
@@ -45,5 +50,3 @@ Building this project made abstract physics and engineering concepts tangible. F
 - **Hardware:** Raspberry Pi, MPU-6050 IMU, MG90S servo motors
 - **Software:** Python, smbus2 (I²C), RPi.GPIO
 - **Concepts:** PID control, sensor fusion, real-time systems
-
-Youtube link - https://youtu.be/M7jIpGaIvR4?si=iSHR12LEKWZX86-e
