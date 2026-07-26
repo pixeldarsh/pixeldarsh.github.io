@@ -55,14 +55,18 @@ The router computes an orientation-invariant shape-regularity signal from each p
 
 ## What I Built
 
-- Adapted the codebase to the production environment and fixed a calibration bug where camera intrinsics weren't being persisted, causing every measurement attempt to fail
-- Built a dual-engine router using a validated shape-regularity signal derived from point-cloud covariance
-- Reduced total measurement error from ~100mm to 7–8mm using per-axis trim factors and a hybrid measurement approach
-- Root-caused a systematic ~56–59mm height error traced to a mismatch between a tape-measured reference and the camera's calibrated depth baseline
-- Added stacked-parcel detection, soft-packaging support, and multi-frame depth averaging
-- Built offline diagnostic tooling to re-run the shipped measurement code against any saved historical point cloud
-- Implemented external API sync with automatic failure classification and recovery via the operator's next barcode scan
-- Authored a complete Standard Operating Procedure covering the full operator workflow
+I built the complete system end-to-end over the course of the internship — from the host-node data collection layer and backend processing server, through to the browser-based HMI, calibration workflow, measurement engines, and deployment packaging.
+
+Key technical work included:
+
+- Designed and implemented the dual-engine measurement architecture: Simple Engine (2D silhouette + depth-differencing) and Perception Engine (DBSCAN clustering, RANSAC plane fitting, PCA orientation, convex-hull footprint), and the automatic shape-regularity router between them
+- Built the calibration system end-to-end: auto-calibration from an empty-scale depth baseline, per-axis trim factor derivation from a registered reference box, and a mandatory verification step before the system will accept any measurements
+- Achieved 7–8mm total measurement error against a known reference box by combining per-axis trim factors with a hybrid measurement approach (rotation-invariant length from the Perception Engine, pixel-accurate width/height from the Simple Engine)
+- Root-caused and fixed a systematic ~56–59mm height error traced to a mismatch between a tape-measured calibration reference and the camera's own calibrated depth baseline
+- Built the external API sync layer with automatic failure classification (connectivity vs. server), scan-blocking after consecutive failures, and self-recovery via the operator's next barcode scan
+- Implemented stacked-parcel detection, soft-packaging support, and multi-frame depth averaging for point-cloud stability
+- Built offline diagnostic tooling to replay the shipped measurement code against any saved historical point cloud — enabling future bugs to be root-caused without access to the physical station
+- Packaged the full system for warehouse deployment and authored the complete Standard Operating Procedure
 
 ## Tech Stack
 
