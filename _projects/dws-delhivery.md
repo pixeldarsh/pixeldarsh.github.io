@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DWS — Automated Dimensioning, Weighing & Scanning
+title: Automated Parcel Dimensioning System
 description: Internally developed parcel dimensioning system for Delhivery warehouses — several orders of magnitude cheaper to build than third-party alternatives, and more accurate in testing.
 img: assets/img/projects/dws/image3.png
 importance: 3
