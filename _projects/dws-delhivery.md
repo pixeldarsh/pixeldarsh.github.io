@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Parcel Dimensioning System
-description: Full-stack industrial measurement system built for Delhivery — replacing a paid third-party tool with an in-house system that is several orders of magnitude cheaper and more accurate in live testing.
+description: Internally developed parcel dimensioning system for Delhivery warehouses — several orders of magnitude cheaper to build than third-party alternatives, and more accurate in testing.
 img: assets/img/projects/dws/image3.png
 importance: 3
 category:
