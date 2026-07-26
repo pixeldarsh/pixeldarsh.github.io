@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Automated Parcel Dimensioning System
+title: Parcel Dimensioning System
 description: Full-stack industrial measurement system built for Delhivery — replacing a paid third-party tool with an in-house system that is several orders of magnitude cheaper and more accurate in live testing.
 img: assets/img/projects/dws/image3.png
 importance: 3
@@ -15,24 +15,22 @@ category:
 
 ## Why Delhivery
 
-I chose to intern at **Delhivery** because it is India's number one company in logistics technology — the organisation that, over the last 15 years, built the infrastructure that made the entire Indian e-commerce revolution possible. Almost every package ordered online in India today moves through Delhivery's network. Working inside its Automation & Infrastructure (A&I) team meant working on systems that operate at a scale few other companies in the country reach, on problems that directly affect millions of shipments.
+**Delhivery** pioneered tech-led logistics in India, over the last 15 years, built the infrastructure that made the entire Indian e-commerce revolution possible. A significant  fraction of packages ordered online in India today move through Delhivery's network. Working inside its Automation & Infrastructure (A&I) team meant working on systems that operate at a scale few other companies in the country reach, on problems that directly affect millions of shipments.
 
 ## What I Built
 
-I designed and built a complete **industrial parcel measurement system** from the ground up — a production-grade station that measures the length, width, height, and weight of every parcel passing through a warehouse, links each measurement to its barcode, and archives the full transaction automatically, in under 3 seconds, with no manual input from the operator. The system is intended to replace a paid third-party dimensioning tool across Delhivery warehouses; it is several orders of magnitude cheaper to build, and in live warehouse testing it outperformed the commercial tool on measurement accuracy.
+I designed and built a complete **industrial parcel measurement system** from the ground up — a production-grade station that measures the length, width, height, and weight of every parcel passing through a warehouse, links each measurement to its barcode, and archives the full transaction automatically, in under 3 seconds, with no manual input from the operator. The system is intended to replace a paid third-party dimensioning tool across Delhivery warehouses globally; it is several orders of magnitude cheaper to build, and in live warehouse testing it outperformed the commercial tool on measurement accuracy.
 
 The entire system — from hardware drivers to vision pipeline to database to operator interface — was built in one internship. This is not a script or a prototype; it is a multi-subsystem distributed application running in active industrial deployment.
 
 ## System Architecture
 
-The system is built as a distributed web application. A set of specialised nodes run on a central server, each responsible for one concern: the **VisionNode** streams depth frames from an Intel RealSense D455 overhead camera; the **ScaleNode** polls a serial-connected industrial weighing scale; the **BarcodeNode** receives AWB scans from a USB scanner. All of these feed into an **OrchestratorNode** — a finite state machine that coordinates the full transaction pipeline, ensuring the right things happen in the right order with no race conditions. The **DatabaseNode** persists every transaction to SQLite. The **HmiBridgeNode** serves live updates to operators over WebSockets and MJPEG video. A separate **FastAPI REST server** exposes transaction history, analytics, and PDF report generation to external systems. The operator interacts with everything through a browser-based HMI — no software to install on the operator's side.
+The system is built as a web application. A set of specialised nodes run on a central server, each responsible for one concern: the **VisionNode** streams depth frames from an Intel RealSense D455 overhead camera; the **ScaleNode** polls a serial-connected industrial weighing scale; the **BarcodeNode** receives AWB scans from a USB scanner. All of these feed into an **OrchestratorNode** — a finite state machine that coordinates the full transaction pipeline, ensuring the right things happen in the right order with no race conditions. The **DatabaseNode** persists every transaction to SQLite. The **HmiBridgeNode** serves live updates to operators on a browser. A separate **FastAPI REST server** exposes transaction history, analytics. The operator interacts with everything through a browser-based HMI — no software to install on the operator's side.
 
 ```
 [Operator places parcel → scans barcode]
             ↓
 [Orchestrator FSM: wait for weight to stabilise]
-            ↓
-[Operator clears the camera's field of view]
             ↓
 [Camera captures depth frame + colour frame]
             ↓
@@ -49,7 +47,7 @@ The system is built as a distributed web application. A set of specialised nodes
 
 ## Why the Intel RealSense D455
 
-A conventional stereo camera relies on matching visual texture between two frames to compute depth. Warehouse parcels are mostly plain cardboard — large, textureless surfaces that give stereo matching almost nothing to work with. The **RealSense D455 is an active infrared depth camera**: it projects its own structured-light pattern onto the scene, so depth is computed from that pattern rather than from the parcel's surface texture. This makes it robust to low-texture surfaces, variable warehouse lighting, and moving parcels — and its depth accuracy at the ~1.5 m overhead mounting height needed for dimensioning is well within billing-grade tolerance for volumetric weight calculation.
+A conventional stereo camera relies on matching visual texture between two frames to compute depth. Warehouse parcels are mostly plain cardboard — large, textureless surfaces that give stereo matching almost nothing to work with. The **RealSense D455 is an active infrared depth camera**: it projects its own structured-light pattern onto the scene, so depth is computed from that pattern rather than from the parcel's surface texture. This makes it robust to low-texture surfaces, variable warehouse lighting.
 
 ## The Dual Vision Pipeline
 
