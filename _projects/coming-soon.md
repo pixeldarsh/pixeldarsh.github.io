@@ -3,7 +3,7 @@ layout: page
 title: Next Project
 description: Something new is in progress — check back soon.
 img: assets/img/projects/coming-soon-thumb.jpg
-importance: 3
+importance: 4
 category:
 ---
 
