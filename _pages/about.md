@@ -30,6 +30,8 @@ My first real step in that direction was building a [Self-Stabilising Platform](
 
 I also built a [Tree Climbing Robot](/projects/tree-climbing-robot/) using pneumatic cylinders and an ESP32 — iterating through multiple mechanical designs before arriving at a form-closure inchworm mechanism that could autonomously climb a tree trunk.
 
+During my internship at Delhivery, I built a [Parcel Dimensioning System](/projects/dws-delhivery/) from the ground up — a production-grade industrial measurement station that replaces a paid third-party tool across Delhivery warehouses, at a fraction of the cost.
+
 I attended **YTS**, a summer robotics program at Plaksha University, where I worked on hands-on robotics projects alongside peers from across the country.
 
 **Programming:** Python
