@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Parcel Dimensioning System
-description: Internally developed parcel dimensioning system for Delhivery warehouses — several orders of magnitude cheaper to build than third-party alternatives, and more accurate in testing.
+description: Internally developed parcel dimensioning system for Delhivery warehouses. The system was significantly cheaper to build than third-party alternatives, and more accurate in testing.
 img: assets/img/projects/dws/image3.png
 importance: 3
 category:
