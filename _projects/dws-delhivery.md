@@ -13,24 +13,24 @@ category:
   </div>
 </div>
 
-## Why Delhivery
+## About Delhivery
 
-**Delhivery** pioneered tech-led logistics in India, over the last 15 years, built the infrastructure that made the entire Indian e-commerce revolution possible. A significant  fraction of packages ordered online in India today move through Delhivery's network. Working inside its Automation & Infrastructure (A&I) team meant working on systems that operate at a scale few other companies in the country reach, on problems that directly affect millions of shipments.
+**Delhivery** pioneered tech-led logistics in India, over the last 15 years. It built the infrastructure that has made the entire Indian e-commerce revolution possible. A significant fraction of packages ordered online in India today move through Delhivery's network. Working inside its Automation & Infrastructure (A&I) team meant working on systems that operate at a scale few other companies in the country reach, on problems that directly affect millions of shipments.
 
 ## What I Built
 
-I designed and built a complete **industrial parcel measurement system** from the ground up — a production-grade station that measures the length, width, height, and weight of every parcel passing through a warehouse, links each measurement to its barcode, and archives the full transaction automatically, in under 3 seconds, with no manual input from the operator. The system is intended to replace a paid third-party dimensioning tool across Delhivery warehouses globally; it is several orders of magnitude cheaper to build, and in live warehouse testing it outperformed the commercial tool on measurement accuracy.
+I designed and built a complete **industrial parcel measurement system** from the ground up — a production-grade station that measures the length, width, height, and weight of every parcel passing through a warehouse, links each measurement to its barcode, and archives the full transaction automatically, in under 3 seconds, with no manual input from the operator. The system is intended to replace a paid third-party dimensioning tool across Delhivery warehouses globally; it is significantly cheaper to build, and in live warehouse testing it outperformed the commercial tool on measurement accuracy.
 
-The entire system — from hardware drivers to vision pipeline to database to operator interface — was built in one internship. This is not a script or a prototype; it is a multi-subsystem distributed application running in active industrial deployment.
+The entire system from hardware drivers to vision pipeline to database to operator interface was built in one internship. This is not a prototype; it is a multi-subsystem distributed application meant to run in active industrial deployment.
 
 ## System Architecture
 
-The system is built as a web application. A set of specialised nodes run on a central server, each responsible for one concern: the **VisionNode** streams depth frames from an Intel RealSense D455 overhead camera; the **ScaleNode** polls a serial-connected industrial weighing scale; the **BarcodeNode** receives AWB scans from a USB scanner. All of these feed into an **OrchestratorNode** — a finite state machine that coordinates the full transaction pipeline, ensuring the right things happen in the right order with no race conditions. The **DatabaseNode** persists every transaction to SQLite. The **HmiBridgeNode** serves live updates to operators on a browser. A separate **FastAPI REST server** exposes transaction history, analytics. The operator interacts with everything through a browser-based HMI — no software to install on the operator's side.
+The system is built as a web application. A set of specialised nodes run on a central server, each responsible for one concern: the **VisionNode** streams depth frames from an Intel RealSense D455 overhead camera; the **ScaleNode** polls a serial-connected industrial weighing scale; the **BarcodeNode** receives AWB scans from a USB scanner. All of these feed into an **OrchestratorNode** that coordinates the full transaction pipeline, ensuring the right things happen in the right order. The **DatabaseNode** persists every transaction to SQLite. The **HmiBridgeNode** serves live updates to operators on a browser. A separate **FastAPI REST server** exposes transaction history, analytics. The operator interacts with everything through a browser-based HMI — no software to install on the operator's side.
 
 ```
 [Operator places parcel → scans barcode]
             ↓
-[Orchestrator FSM: wait for weight to stabilise]
+[Orchestrator: wait for weight to stabilise]
             ↓
 [Camera captures depth frame + colour frame]
             ↓
@@ -57,7 +57,7 @@ A single measurement algorithm does not work well across the full range of parce
 
 **Perception Engine (V7)** reconstructs a full 3D point cloud from the depth frame, segments the parcel using DBSCAN density-based clustering, RANSAC-fits the top surface as a plane, derives orientation via Principal Component Analysis, and fits the footprint from a rotated convex hull. When no reliable flat surface exists, it falls back to a percentile-based height estimate from the point cloud. This engine is built for irregular, non-planar, or soft-sided parcels — bubble wrap, poly bags, oddly shaped items — where the Simple Engine's silhouette-based measurement breaks down.
 
-The router computes an orientation-invariant shape-regularity signal from each parcel's point-cloud covariance structure. The two engines are never blended — one engine's L/W/H is selected entirely for each transaction. This was validated against real warehouse captures with visually confirmed ground truth, including controlled experiments that tilted known-regular boxes through multiple angles to confirm the routing signal was not fooled by orientation.
+The router selects between the two based on whether the V7 engine's plane is obtained with sufficient confidence. If it is able to, then it uses the V7 engine. If not, it uses the Simple Engine. The two engines are never blended. This was validated against real warehouse captures with visually confirmed ground truth, including controlled experiments.
 
 <div class="row justify-content-center mb-2 mt-4">
   <div class="col-md-10">
@@ -75,13 +75,12 @@ The router computes an orientation-invariant shape-regularity signal from each p
 
 ## Engineering Highlights
 
-- **Finite state machine orchestrator** with deterministic transaction sequencing — weight stability gating, operator-clear pause, capture, measurement, and database write all happen in a guaranteed order with no race conditions
+- **Orchestrator** with deterministic transaction sequencing: weight stability gating, operator-clear pause, capture, measurement, and database write all happen in a sequence
 - **Dual vision pipeline with automatic per-capture routing**, validated against real warehouse data; measurement error reduced to 7–8mm against a known reference
 - **Complete calibration system**: auto-calibration from an empty-scale depth baseline, per-axis trim factor derivation from a registered reference box, and a mandatory verification pass before the system accepts any measurements
-- **WebSocket-powered HMI** with live dimension readout, MJPEG video stream, measurement logs, calibration logs, and session diagnostics — all served as a single-page web app
+- **WebSocket-powered HMI** with live dimension readout, MJPEG video stream, measurement logs, calibration logs, and session diagnostics served over the web
 - **FastAPI REST API** for external system integration, analytics, and PDF report generation
-- **Offline replay tooling** — the full measurement pipeline can be re-run against any saved historical point cloud without access to the physical hardware, enabling root-cause analysis from archived data
-- **Production deployment** via systemd with health monitoring, disk retention, and graceful shutdown
+- **Offline replay tooling** the full measurement pipeline can be re-run against any saved historical point cloud without access to the physical hardware, enabling root cause analysis from archived data
 - **External sync layer** with automatic failure classification (network vs. API server) and self-recovery via the operator's next barcode scan
 
 ## Tech Stack
@@ -90,4 +89,3 @@ The router computes an orientation-invariant shape-regularity signal from each p
 - **Vision:** OpenCV, Open3D, DBSCAN, RANSAC, PCA
 - **Backend:** Python, FastAPI, WebSockets, aiohttp, SQLite
 - **Frontend:** Browser-based HMI (HTML/JS, WebSocket live updates, MJPEG stream)
-- **Deployment:** systemd, headless Linux server
