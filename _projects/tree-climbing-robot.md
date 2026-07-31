@@ -10,7 +10,9 @@ youtube_id: kiXCCa_L0Ws
 
 <div class="row justify-content-center mb-4 g-3">
   <div class="col-12 col-md-6">
-    {% include figure.liquid loading="eager" path="assets/img/projects/tree-climbing-robot-thumb.jpg" title="Tree Climbing Robot" class="img-fluid rounded z-depth-1 h-100 w-100" style="object-fit:cover;" %}
+    <div class="ratio ratio-16x9">
+      <img src="{{ '/assets/img/projects/tree-climbing-robot-thumb.jpg' | relative_url }}" alt="Tree Climbing Robot" class="rounded z-depth-1" style="object-fit:cover;width:100%;height:100%;">
+    </div>
   </div>
   {% if page.youtube_id %}
   <div class="col-12 col-md-6">

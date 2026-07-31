@@ -10,7 +10,9 @@ youtube_id: M7jIpGaIvR4
 
 <div class="row justify-content-center mb-4 g-3">
   <div class="col-12 col-md-6">
-    {% include figure.liquid loading="eager" path="assets/img/projects/stabilising-platform-thumb.jpg" title="Self-Stabilising Platform" class="img-fluid rounded z-depth-1 h-100 w-100" style="object-fit:cover;" %}
+    <div class="ratio ratio-16x9">
+      <img src="{{ '/assets/img/projects/stabilising-platform-thumb.jpg' | relative_url }}" alt="Self-Stabilising Platform" class="rounded z-depth-1" style="object-fit:cover;width:100%;height:100%;">
+    </div>
   </div>
   {% if page.youtube_id %}
   <div class="col-12 col-md-6">
