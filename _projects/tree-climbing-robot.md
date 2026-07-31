@@ -8,15 +8,12 @@ category:
 youtube_id: kiXCCa_L0Ws
 ---
 
-<div class="row justify-content-center mb-4">
-  <div class="col-md-10">
-    {% include figure.liquid loading="eager" path="assets/img/projects/tree-climbing-robot-thumb.jpg" title="Tree Climbing Robot" class="img-fluid rounded z-depth-1" %}
+<div class="row justify-content-center mb-4 g-3">
+  <div class="col-12 col-md-6">
+    {% include figure.liquid loading="eager" path="assets/img/projects/tree-climbing-robot-thumb.jpg" title="Tree Climbing Robot" class="img-fluid rounded z-depth-1 h-100 w-100" style="object-fit:cover;" %}
   </div>
-</div>
-
-{% if page.youtube_id %}
-<div class="row justify-content-center mb-4">
-  <div class="col-md-10">
+  {% if page.youtube_id %}
+  <div class="col-12 col-md-6">
     <div class="ratio ratio-16x9">
       <iframe
         src="https://www.youtube.com/embed/{{ page.youtube_id }}"
@@ -25,12 +22,12 @@ youtube_id: kiXCCa_L0Ws
       ></iframe>
     </div>
   </div>
+  {% endif %}
 </div>
-{% endif %}
 
 ## Overview
 
-When I was visiting the Andamans, I saw some farmers harvesting coconuts. It seemed intriguing and very tedious and dangerous to me. We had wondered as family if there was a better way to do the whole harvesting. When the opportunity to work on this project arose at the YTS summer school, I immediately decided to work on this project. Pneumatics were selected over electric motors to achieve a high torque-to-weight ratio while remaining highly cost-effective.
+When I was visiting the Andamans, I saw some farmers harvesting coconuts. It seemed intriguing and very tedious and dangerous to me. We had wondered as family if there was a better way to do the whole harvesting. When the opportunity to work on this project arose at the YTS summer school, I immediately decided to take it up. Pneumatics were selected over electric motors to achieve a high torque-to-weight ratio while remaining highly cost-effective.
 
 ## Design Evolution
 

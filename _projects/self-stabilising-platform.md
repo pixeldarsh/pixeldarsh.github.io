@@ -8,15 +8,12 @@ category:
 youtube_id: M7jIpGaIvR4
 ---
 
-<div class="row justify-content-center mb-4">
-  <div class="col-md-10">
-    {% include figure.liquid loading="eager" path="assets/img/projects/stabilising-platform-thumb.jpg" title="Self-Stabilising Platform" class="img-fluid rounded z-depth-1" %}
+<div class="row justify-content-center mb-4 g-3">
+  <div class="col-12 col-md-6">
+    {% include figure.liquid loading="eager" path="assets/img/projects/stabilising-platform-thumb.jpg" title="Self-Stabilising Platform" class="img-fluid rounded z-depth-1 h-100 w-100" style="object-fit:cover;" %}
   </div>
-</div>
-
-{% if page.youtube_id %}
-<div class="row justify-content-center mb-4">
-  <div class="col-md-10">
+  {% if page.youtube_id %}
+  <div class="col-12 col-md-6">
     <div class="ratio ratio-16x9">
       <iframe
         src="https://www.youtube.com/embed/{{ page.youtube_id }}"
@@ -25,13 +22,14 @@ youtube_id: M7jIpGaIvR4
       ></iframe>
     </div>
   </div>
+  {% endif %}
 </div>
-{% endif %}
 
 ## Overview
 
 This project is a self-stabilising platform built using a **Raspberry Pi**, an **MPU-6050 IMU** (Inertial Measurement Unit), and two servo motors. 
 I got inspired to build this when I visited IIT Delhi for a Research exhibition. They had built a magnetic levitation platform and it had a built in control loop for stablization. To understand the concept in practice, I started building this project. 
+
 The platform keeps a surface level regardless of how the base is tilted — using a classic **PID (Proportional-Integral-Derivative) control loop** running in real-time.
  The aim of the project was to demonstrate how feedback control systems used in robotics and aerospace can be applied to create a compact stabilizing mechanism.
 The platform used an MPU6050 sensor, which combines a gyroscope and accelerometer to continuously measure tilt angle and motion. This data was processed by a Raspberry Pi, which acted as the main controller. The Raspberry Pi ran a PID algorithm that compared the current tilt angle with the desired balanced position and calculated the correction needed in real time.
