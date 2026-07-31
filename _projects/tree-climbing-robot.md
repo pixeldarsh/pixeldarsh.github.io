@@ -30,7 +30,7 @@ youtube_id: kiXCCa_L0Ws
 
 ## Overview
 
-Pneumatics were selected over electric motors to achieve a high torque-to-weight ratio while remaining highly cost-effective.
+When I was visiting the Andamans, I saw some farmers harvesting coconuts. It seemed intriguing and very tedious and dangerous to me. We had wondered as family if there was a better way to do the whole harvesting. When the opportunity to work on this project arose at the YTS summer school, I immediately decided to work on this project. Pneumatics were selected over electric motors to achieve a high torque-to-weight ratio while remaining highly cost-effective.
 
 ## Design Evolution
 
