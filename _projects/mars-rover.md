@@ -29,7 +29,7 @@ youtube_id: _6h9HucQGHs
 
 ## Overview
 
-A 70cm × 50cm Mars rover prototype built on the rocker-bogie suspension mechanism — the same design used by NASA JPL rovers — capable of navigating rough terrain and autonomously classifying obstacles as passable or impassable. The rover was built for ₹56,950 (~US$590), against ~US$1,600 for the JPL Open Source Rover, which lacks autonomous navigation, stereo vision, or IMU.
+A 70cm × 50cm Mars rover prototype built on the rocker-bogie suspension mechanism — inspired by NASA JPL rovers — capable of navigating rough terrain and autonomously classifying obstacles as passable or impassable. The rover was built for ₹56,950 (~US$590), with autonomous navigation, stereo vision, IMU, and a 6-DoF arm.
 
 The rover is controlled by a Raspberry Pi 3B+ running Ubuntu and communicating over Wi-Fi with a laptop that handles perception and route planning. All 6 wheels are independently driven; the 4 front and rear wheels have independent steering (Ackermann geometry). A pan-tilt stereo camera, MPU6050 IMU, and 4 ultrasonic sensors provide sensing. A 6-DoF robotic arm with a wrist camera enables pick-and-place.
 
