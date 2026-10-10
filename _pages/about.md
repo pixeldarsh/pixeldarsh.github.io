@@ -32,6 +32,8 @@ I attended **YTS**, a summer robotics program at Plaksha University, where I wor
 
 During my internship at **Delhivery**, I built a [Parcel Dimensioning System](/projects/dws-delhivery/) from the ground up — a production-grade industrial measurement station that replaces a paid third-party tool across Delhivery warehouses, at a fraction of the cost.
 
+I also built a [Mars Rover with Autonomous Obstacle Navigation and Avoidance Classification](/projects/mars-rover/) — a rocker-bogie rover that autonomously classifies terrain, plans routes, and navigates rough surfaces using stereo vision, IMU, and ultrasonic sensors, all at a fraction of the cost of comparable open-source designs.
+
 
 **Programming:** Python
 
